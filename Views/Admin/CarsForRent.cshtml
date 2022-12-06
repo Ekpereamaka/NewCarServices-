@@ -1,0 +1,59 @@
+﻿@model Car_Hire_Services__CHS_.ViewModel.CarViewModel
+@{
+    ViewData["Title"] = "CarsForRent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="container-fluid">
+    <div class="col-6  m-auto">
+        <div class=" card">
+            <div class="card-header bg-primary text-center text-white">
+                <h3>Cars For Sale or Rent</h3>
+            </div>
+
+            <div class="card-body">
+                @*<form asp-controller="Admin" asp-action="AdminBankDetails" method="post" >*@
+                <form>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="CustomerName"></label>
+                                <select id="customers" asp-for="CustomerId" asp-items="@(new SelectList(ViewBag.Customers, "Id", "Name"))" class="form-control" placeholder="Enter cars" style="width:250px">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="Cars"></label>
+                                <select id="cars" asp-for="Cars" asp-items="@(new SelectList(ViewBag.Cars, "Id", "Name"))" class="form-control" placeholder="Enter cars" style="width:250px">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="ServicesType"></label>
+                                <select id="ServicesType" asp-for="ServiceTypeId" asp-items="@(new SelectList(ViewBag.ServicesType, "Id", "Name"))" class="form-control" placeholder="Enter cars" style="width:250px">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="Price"></label>
+                                <h3 id="text"></h3>
+                                <input id="price" asp-for="Price" class="form-control" placeholder="Enter Price" />
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button asp-controller="Admin" asp-action="AdminBankDetails" class="btn btn-primary">Make Payment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

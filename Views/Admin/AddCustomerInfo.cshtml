@@ -1,0 +1,127 @@
+﻿@model Car_Hire_Services__CHS_.ViewModel.CustomerViewModel
+@{
+    ViewData["Title"] = "AddCustomerInfo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="main-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8 mt-3 m-auto">
+                <div class="card">
+                    @if (Model != null)
+                    {
+                        if (Model.ResponseOccured)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error Alert:  </strong> @Model.ResponseMessage
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success Alert:</strong> @Model.ResponseMessage
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+
+                    }
+                    <div class="card-heder bg-primary text-white text-center">
+                        <h3>Create Customer information</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <form asp-controller="Admin" asp-action="AddCustomerInfo" method="post">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="CustomerName"></label>
+                                        <input type="text" asp-for="CustomerName" class="form-control" placeholder="Enter customer name">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="Address"></label>
+                                        <input type="text" asp-for="Address" class="form-control" placeholder="Enter customer Address">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="Email"></label>
+                                        <input type="email" asp-for="Email" class="form-control" placeholder="Enter customer email">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="Phone"></label>
+                                        <input type="number" asp-for="Phone" class="form-control" placeholder="Enter customer phone">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <select id="customerCountry" asp-items="@(new SelectList(ViewBag.Nationality, "Id", "Name"))" class="form-control" placeholder="Enter custome state">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="StateId">State</label>
+                                        <select id="customerState" asp-for="StateId" class="form-control" placeholder="Enter customer state">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="City"></label>
+                                        <select asp-for="City" class="form-control" placeholder="Enter customer state">
+                                            <option value="Select City">select City</option>
+                                            <option value="New haven">New haven</option>
+                                            <option value="OkparaAvenue">OkparaAvenue</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="Description"></label>
+                                        <input type="text" asp-for="Description" class="form-control" placeholder="Enter customer Description">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="GuarantorsName"></label>
+                                        <input type="text" asp-for="GuarantorsName" class="form-control" placeholder="Enter customer GuarantorsName">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="GuarantorsAddress"></label>
+                                        <input type="text" asp-for="GuarantorsAddress" class="form-control" placeholder="Enter customer GuarantorsAddress">
+                                    </div>
+                                </div>
+
+                                <div class="w-25 mt-3 m-auto">
+                                    <button type="submit" class="btn btn-primary form-control">Submit</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

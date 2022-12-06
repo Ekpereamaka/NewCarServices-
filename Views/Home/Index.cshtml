@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Car_Hire_Services__CHS_.ViewModel.CarViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid m-0 p-0">
+
+
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner m-0 p-0">
+            <div class="carousel-item active">
+                <img src="images/car31.jpg" alt="Los Angeles" style="width:100%" height:"500px">
+            </div>
+            <div class="carousel-item">
+                <img src="images/car37.jpg" alt="Chicago" style="width:100%" height:"100px">
+            </div>
+            <div class="carousel-item">
+                <img src="images/car54.jpg" alt="New York" style="width:100%; height:500px;">
+            </div>
+            <div class="carousel-item">
+                <img src="images/car23.jpg" alt="New York" style="width:100%; height:500px;">
+            </div>
+            <div class="carousel-item">
+                <img src="images/car14.jpg" alt="New York" style="width:100%; height:500px;">
+            </div>
+            <div class="carousel-item">
+                <img src="images/car15.jpg" alt="New York" style="width:100%; height:500px;">
+            </div>
+            <div class="carousel-item">
+                <img src="images/car19.jpg" alt="New York" style="width:100%; height:500px;">
+            </div>
+            <div class="carousel-item">
+                <img src="images/car59.jpg" alt="New York" style="width:100%; height:500px;">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    <br />
+    <div class="row p-4">
+        @if (Model != null && Model.Count() > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-3 p-4">
+                    <div class="card" @*style="width:250px"*@>
+
+                        <img class="card-img-top" src="images/car3.jpg" alt="Card image" style="width:100%; height:200px;">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">@item.Name]</h4>
+                            <p class="card-text">@item.Price</p>
+                            @item.Brand
+                            @*<p>Sale: $30000</p>
+                            <p>Rent: $2500</p>*@
+                        </div>
+
+                       
+                    </div>
+                </div>
+            }
+        }
+        </div>
+
+    </div>
+<br>
+<div class="container-fluid text-center">
+    <h3>VIEW LATEST NEWS AND CARS</h3>
+</div>
+<br>
+<div class="container-fluid text-primary">
+    <h1>CAR SERVICE</h1>
+    <h1>CHALLANGES</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <p>The U.S. healthcare system is the most expensive in the world, and our costs are projected to grow dramatically in the coming years. Yet, our health outcomes are worse than many other nations. Ineffective care puts our population through unnecessary treatments, leaves us in poorer health, and shortens our life expectancy. The high cost of healthcare makes everything in our economy more expensive, and reduces the resources that individual families and the nation have to invest in our collective future.</p>
+        </div>
+        <div class="col-4">
+            <p>The U.S. healthcare system is the most expensive in the world, and our costs are projected to grow dramatically in the coming years. Yet, our health outcomes are worse than many other nations. Ineffective care puts our population through unnecessary treatments, leaves us in poorer health, and shortens our life expectancy. The high cost of healthcare makes everything in our economy more expensive, and reduces the resources that individual families and the nation have to invest in our collective future.</p>
+        </div>
+        <div class="col-4">
+            <p>The U.S. healthcare system is the most expensive in the world, and our costs are projected to grow dramatically in the coming years. Yet, our health outcomes are worse than many other nations. Ineffective care puts our population through unnecessary treatments, leaves us in poorer health, and shortens our life expectancy. The high cost of healthcare makes everything in our economy more expensive, and reduces the resources that individual families and the nation have to invest in our collective future. <a href="hppts/google">Read more</a></p>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <img src="images/image0.png" style="width:70%; height:400px;">
+        </div>
+        <div class="col-6">
+            <h1 class="text-warning">STRATEGIES FOR CHANGE</h1>
+            <p>The Peterson Center on Car Hire Services (CHS) is dedicated to transforming U.S. healthcare into a high-performance system by improving quality and lowering cost. Our programs are designed to accelerate improvement by:</p>
+            <ol>
+                <li>Finding and validating innovative solutions,</li>
+                <li>Facilitating their broad adoption, and</li>
+                <li>Fostering the conditions to improve healthcare nationally.</li>
+            </ol>
+            <button type="button" class="btn btn-primary">Read more</button>
+        </div>
+    </div>
+</div>

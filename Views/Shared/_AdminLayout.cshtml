@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Car_Hire_Services__CHS_</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" />
+    <link href="~/css/css/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/css/sweetAlert2.css" rel="stylesheet" />*@
+    <link href="~/css/css/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+
+    <script>
+        function successAlert(message) {
+            swal({
+                title: "Good job!",
+                text: message,
+                icon: "success",
+                timer: 60000,
+                confirmButtonColor: "#FF9B44",
+            });
+        }
+
+        function newSuccessAlert(message, url) {
+            Swal.fire({
+                icon: 'success',
+                text: message,
+                confirmButtonColor: "#FF9B44",
+            }).then((isConfirm) => {
+                if (isConfirm) {
+                    location.reload(url);
+                }
+            })
+
+        }
+
+        function errorAlert(message) {
+            Swal.fire({
+                icon: 'error',
+                text: message,
+                timer: 60000,
+                confirmButtonColor: "#FF9B44",
+            })
+        }
+    </script>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="col-12 text-center mt-2">
+                <div class="container-fluid p-2 text-center text-white bg-primary">
+                    <h3>SUCCESS CAR HIRE AND SALES SERVICES (SCHSS) USA</h3>
+                </div>
+                <ul class="nav text-center justify-content-center">
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="Home" class="nav-link">Home</a>
+                    </li>
+
+                   @* <li class="nav-item">
+                        <a asp-controller="Customer" asp-action="CustomerDetail" class="nav-link">CustomerDetail</a>
+                    </li>*@
+
+                    <li class="nav-item">
+                        @* <a class="nav-link" href="">Contact</a>*@
+                        <a asp-controller="Admin" asp-action="CarsForRent" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="AddCarsByAdmin" class="nav-link">Add Product</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="AddCustomerInfo" class="nav-link">AddCustomerInfo</a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @*<li class="nav-item">
+                <a asp-controller="Admin" asp-action="Index" class="nav-link">CustomerReg</a>
+            </li>*@
+
+
+
+                        <li class="nav-item">
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="btn btn-link">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                        </li>
+                    }
+
+
+                    <li class="nav-item pt-1">
+                        <button type="button" class="btn btn-primary">Search</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+
+        @RenderBody()
+
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/CarSales.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
+    <script src="~/js/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/js/bootstrap.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Car_Hire_Services__CHS_</title>
+    <link href="~/css/css/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/css/sweetAlert2.css" rel="stylesheet" />*@
+    <link href="~/css/css/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+
+
+    <script>
+        function successAlert() {
+            swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                icon: "success",
+                button: "Aww yiss!",
+            });
+        }
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="col-12 text-center mt-2">
+                <div class="container-fluid p-2 text-center text-white bg-primary">
+                    <h3>SUCCESS CAR HIRE AND SALES SERVICES (SCHSS) USA</h3>
+                </div>
+                <ul class="nav text-center justify-content-center">
+                    <li class="nav-item">
+                        @*<a class="nav-link" href="">Home</a>*@
+                        <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
+                    </li>
+                    @*<li class="nav-item">
+            <a class="nav-link" href="">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">Contact</a>
+        </li>*@
+
+                    @*<li class="nav-item">
+            <a asp-controller="Admin" asp-action="AddCarsByAdmin" class="nav-link">Services</a>
+        </li>*@
+                    <li class="nav-item">
+                        <a asp-controller="Customer" asp-action="CustomerDetail" class="nav-link">CustomerDetail</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="Account" asp-action="Register" class="nav-link">Register</a>
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Admin" asp-action="Index" class="nav-link">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="btn btn-link">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                        </li>
+                    }
+
+
+                    <li class="nav-item pt-1">
+                        <button type="button" class="btn btn-primary">Search</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+
+        @RenderBody()
+
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h1 class="text-primary">OUR INITIATIVES</h1>
+                    <br>
+                    <p>The Peterson Center on Car Hire Services (CHSS) collaborates with key thought leaders and stakeholders across the healthcare system, including health providers, consumer advocacy groups, health insurance plans, and major purchasers such as employers, states, and unions. Our grant-making, partnerships, and research are focused on scaling innovative solutions that improve quality and lower costs on a national scale.</p>
+                    <button type="button" class="btn btn-primary">Read more</button>
+                </div>
+                <div class="col-4 mt-5">
+                    <img src="images/image 00.png" style="width:90%; height:300px;">
+                </div>
+                <div class="col-4 mt-5">
+                    <h3 class="text-primary text-center">
+                        Export Car From USA To Nigeria At Cheap Prices
+                    </h3>
+                    You might have come across Nigeria accident cars that are low on safety and quality. Such sites offer premium quality and flawless design at your dream price. After the payment is approved, your car is delivered directly from the location of the auction to your doorstep in Nigeria. The shipping is done through a combination of inland and oceanic transport to maintain reliability and be on schedule. The best option is to export car from USA to Nigeria so you get the best deals right from your home.
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <br>
+        <h2 class="text-center text-primary">Car Hire For Any Kind Of Trip</h2>
+        <p class="text-center">Compare deals from the biggest car hire companies</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4">
+                    <img src="images/car54.jpg" style="width:400px; height:300px;">
+                    <h5>  rent $ 460 per day including caution fee</h5>
+                </div>
+                <div class="col-4">
+                    <img src="images/car4.jpg" style="width:400px; height:300px;">
+                    <h5>rent $ 560 per day including caution fee</h5>
+                </div>
+                <div class="col-4">
+                    <img src="images/car26.jpg" style="width:400px; height:300px;">
+                    <h5>rent $ 560 per day including caution fee</h5>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4">
+                    <img src="images/car29.jpg" style="width:400px; height:300px;">
+                    <h5>rent $ 560 per day including caution fee</h5>
+                </div>
+                <div class="col-4">
+                    <img src="images/car42.jpg" style="width:400px; height:300px;">
+                    <h5>rent $ 560 per day including caution fee</h5>
+                </div>
+                <div class="col-4">
+                    <img src="images/car59.jpg" style="width:400px; height:300px;">
+                    <h5>rent $ 560 per day including caution fee</h5>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4">
+                    <img src="images/car44.png" style="width:400px; height:300px;">
+                    <h5>rent $ 560 per day including caution fee</h5>
+                </div>
+                <div class="col-4">
+                    <img src="images/car37.jpg" style="width:400px; height:300px;">
+                    <h5> rent $ 560 per day including caution fee</h5>
+                </div>
+                <div class="col-4">
+                    <img src="images/car58.jpg" style="width:400px; height:300px;">
+                    <h5> rent $ 560 per day including caution fee</h5>
+                    <p>to view more cars</p> <button type="button" class="btn btn-primary">Click here</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <h1 class="text-warning">NEWS AND VIEWS</h1>
+                    <br>
+                    <h5 class="text-warning">FROM THE FIELD</h5>
+                </div>
+            </div>
+            <br>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <p><b>Latest From Peterson Center on Car Hire Services (CHS)</b></p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <a href="hppts/google">Read more</a>
+                        </p>
+
+                        <div class="container" style="width:200%;">
+                            <h2><b>Frequently Asked Questions</b></h2>
+                            <div class="card">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>What do I need to rent a car?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Am I old enough to rent a car?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Can I book a car for my partner, friend, colleague, etc?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Any tips on choosing the right car?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Is the rental price all inclusive?</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <br>
+
+
+                        <br />
+                        <p>SOURCE: Peterson KFF Car System Tracker</p>
+                        <h6>Overall Inflation Has Not Yet Flowed Through to the Car Sector</h6>
+                    </div>
+                    <div class="col-6">
+                        <p>Update From Around The Nation</p>
+                        <h6>Data Collaboration Aims to Improve Long-Term Car Hire Services, Car Disparities</h6>
+                        <p>sep 28,2022  <a href="hppts/google"><b>Read More</b></a></p>
+                    </div>
+
+                    <div class="container-fluid bg-primary text-white">
+                        <hr />
+                        <div class="row">
+                            <div class="col-2 m-auto mt-auto">
+                                <h4>Shop</h4>
+                                <p>Browse By Category</p>
+                                <p>View All Inventory</p>
+                                <p>Find a Store</p>
+                            </div>
+
+                            <div class="col-2">
+                                <h4>About</h4>
+                                <p>About CarMax</p>
+                                <p>Contact Us</p>
+                                <p>Social Responsibility</p>
+                                <p>CarMax Foundation</p>
+                                <p>Media Center</p>
+                                Investor Relations
+                            </div>
+                            <div class="col-2">
+                                <h4>Sell/Trade</h4>
+                                <p>Get an Online Offer</p>
+                            </div>
+                            <div class="col-2">
+                                <h4>Finance</h4>
+                                <p>How it Works</p>
+                                <p>CarMax Auto Financ</p>
+                            </div>
+
+                            <div class="col-2">
+                                <h4>Shop</h4>
+                                <p>Browse By Category</p>
+                                <p>View All Inventory</p>
+                                <p>Find a Store</p>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <p class="text-center">By using carmax.com, you consent to the monitoring and storing of your interactions with the website, including with a CarMax vendor, for use in improving and personalizing our services. See our Privacy Policy for details.</p>
+
+
+                        <hr>
+
+                        <div>
+                            <p class="text-center">Designed By <span class="text-success">Izzy Money <span class="text-primary">0ct.23.2022</span></span></p>
+                        </div>
+
+
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/js/bootstrap.min.js"></script>
+    <script src="~/js/js/bootstrap.js"></script>
+    <script src="~/js/CarSales.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

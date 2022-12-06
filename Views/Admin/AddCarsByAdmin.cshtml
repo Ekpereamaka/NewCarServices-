@@ -1,0 +1,96 @@
+﻿@model Car_Hire_Services__CHS_.ViewModel.CarViewModel
+@{
+    ViewData["Title"] = "AddCarsByAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="col-6  m-auto">
+        <div class=" card">
+            <div class="card-header bg-primary text-center text-white">
+                <h3>Upload By Admin</h3>
+            </div>
+
+            <div class="card-body">
+                @if (Model != null)
+                {
+                    if (Model.ResponseOccured)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error Alert:  </strong> @Model.ResponseMessage
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success Alert:</strong> @Model.ResponseMessage
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                }
+                    <form asp-controller="Admin" asp-action="AddCarsByAdmin" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="YearOfManifacture"></label>
+                                    <input type="text" asp-for="YearOfManifacture" class="form-control" placeholder="Enter year of manifacture">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Type"></label>
+                                    <input type="text" asp-for="Type" class="form-control" placeholder="Enter  type">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Brand"></label>
+                                    <input type="text" asp-for="Brand" class="form-control" placeholder="Enter brand">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Color"></label>
+                                    <input type="text" asp-for="Color" class="form-control" placeholder="Enter brand">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Price"></label>
+                                    <input type="text" asp-for="Price" class="form-control" placeholder="Enter Price">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Image"></label>
+                                    <input type="file" asp-for="Image" class="form-control" placeholder="Enter Image">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label asp-for="Description"></label>
+                                    <textarea rows="4" cols="5" type="text" asp-for="Description" class="form-control" placeholder="Enter Description"></textarea>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+

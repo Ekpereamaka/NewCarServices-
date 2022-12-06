@@ -1,0 +1,61 @@
+﻿@model Car_Hire_Services__CHS_.ViewModel.CarViewModel
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container m-auto">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header text-white text-center bg-primary">
+                    <h3>Payment</h3>
+                </div>
+
+                <div class="card-body">
+                    <form asp-controller="Admin" asp-action="Payment" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Name"></label>
+                                    <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Address "></label>
+                                    <input type="text" asp-for="Address " class="form-control" placeholder="Enter Address" style="width:250px">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Price "></label>
+                                    <input type="text" asp-for="Price " class="form-control" placeholder="Enter Price" style="width:250px">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Phone "></label>
+                                    <input type="text" asp-for="Phone " class="form-control" placeholder="Enter Phone" style="width:250px">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Nextofkin"></label>
+                                    <input type="text" asp-for="Nextofkin " class="form-control" placeholder="Enter Nextofkin" style="width:250px">
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+
+                        </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+           </div>
+        </div>
