@@ -19,7 +19,7 @@ namespace Car_Hire_Services__CHS_.Models
         public virtual ApplicationUser User { get; set; }
         public int CarId { get; set; }
         [ForeignKey("CarId")]
-        public virtual mycar Cars { get; set; }
+        public virtual Cars Cars { get; set; }
 
         public string ReferenceNo { get; set; }
     }

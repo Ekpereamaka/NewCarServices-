@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Car_Hire_Services__CHS_.Models
 {
-    public class mycar : BaseModel
+    public class Cars : BaseModel
     {
         public string YearOfManifacture { get; set; }
         public string Type { get; set; }

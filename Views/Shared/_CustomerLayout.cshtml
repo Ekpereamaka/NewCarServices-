@@ -62,30 +62,21 @@
                     </li>
 
 
-                          @* <li class="nav-item">
+                    
+                    @* <li class="nav-item">
             <a asp-controller="Customer" asp-action="CustomerDetail" class="nav-link">CustomerDetail</a>
         </li>*@
 
                     <li class="nav-item">
                         @* <a class="nav-link" href="">Contact</a>*@
-                        <a asp-controller="Admin" asp-action="CarsForRent" class="nav-link">Services</a>
+                        <a asp-controller="Customer" asp-action="CarsForRent" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Customer" asp-action="AddCarsByAdmin" class="nav-link">Add Product</a>
                     </li>
 
                     <li class="nav-item">
-                        <a asp-controller="Customer" asp-action="CustomerDetail" class="nav-link">CustomerReg</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a asp-controller="Admin" asp-action="GetCars" class="nav-link">GetCars</a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a asp-controller="Admin" asp-action="AddCarsByAdmin" class="nav-link">Add Product</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a asp-controller="Admin" asp-action="AddCustomerInfo" class="nav-link">Customer Detail</a>
+                        <a asp-controller="Customer" asp-action="AddCustomerInfo" class="nav-link">Customer Detail</a>
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -96,7 +87,7 @@
 
 
                         <li class="nav-item">
-                            <form asp-controller="Account" asp-action="Logout" method="post">
+                            <form asp-controller="Customer" asp-action="Logout" method="post">
                                 <button type="submit" class="btn btn-link">Logout</button>
                             </form>
                         </li>
@@ -104,7 +95,7 @@
                     else
                     {
                         <li class="nav-item">
-                            <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                            <a asp-controller="Customer" asp-action="Login" class="nav-link">Login</a>
                         </li>
                     }
 

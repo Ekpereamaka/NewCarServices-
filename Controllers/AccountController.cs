@@ -81,7 +81,7 @@ namespace Car_Hire_Services__CHS_.Controllers
                         //(TUser user, string password, bool isPersistent, bool lockoutOn
                         await _signInManager.PasswordSignInAsync(user, user.Password,  true, false);
                            
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Login");
                     }
                 }
                 applicationUserViewModel.ErrorResponseOccured = false;
@@ -112,9 +112,12 @@ namespace Car_Hire_Services__CHS_.Controllers
                     if (result.Succeeded)
                     {
 
-                        model.ErrorResponseOccured = false;
-                        return RedirectToAction("index", "home");
+                            model.ErrorResponseOccured = false;
+                            return RedirectToAction("Index", "Home");
+
                     }
+
+                    
                     model.ErrorResponseOccured = true;
                     model.ResponseMessage = "Invalid Login Attempt";
                     ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
@@ -123,7 +126,7 @@ namespace Car_Hire_Services__CHS_.Controllers
             }
             return View(model);
         }
-       
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -143,5 +146,89 @@ namespace Car_Hire_Services__CHS_.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult AdminRegister()// Action that doesn't require parameter
+        
+        {
+            var nation = _context.Nationality.Where(x => x.Id != 0).ToList();
+            ViewBag.Nationality = nation;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdminRegister(ApplicationUserViewModel applicationUserViewModel)// Action that requires a parameter
+        {
+            var nation = _context.Nationality.Where(x => x.Id != 0).ToList();
+            ViewBag.Nationality = nation;
+            try
+            {
+
+                if (ModelState != null)
+                {
+                    if (applicationUserViewModel.Password != applicationUserViewModel.ConfirmPassword)
+                    {
+                        applicationUserViewModel.ErrorResponseOccured = true;
+                        applicationUserViewModel.ResponseMessage = "Password does not Match Please Check!.";
+                        return View(applicationUserViewModel);
+                    }
+
+                    if (applicationUserViewModel.State == null)
+                    {
+                        applicationUserViewModel.ErrorResponseOccured = true;
+                        applicationUserViewModel.ResponseMessage = " Please select state.";
+                        return View(applicationUserViewModel);
+                    }
+
+
+                    if (applicationUserViewModel.Phone == null)
+                    {
+                        applicationUserViewModel.ErrorResponseOccured = true;
+                        applicationUserViewModel.ResponseMessage = " Please select Phone Number.";
+                        return View(applicationUserViewModel);
+                    }
+
+
+                    //lambda is you to target a particular column in a table
+                    var isEmail = _userManager.Users.Where(x => x.Email == applicationUserViewModel.Email).FirstOrDefault();
+                    if (isEmail != null)
+                    {
+                        applicationUserViewModel.ErrorResponseOccured = true;
+                        applicationUserViewModel.ResponseMessage = "Email already exist!.";
+                        return View(applicationUserViewModel);
+                    }
+
+                    var user = await  _userHelper.CreateAdminAsync(applicationUserViewModel);
+                    if (user != null)
+                    {
+                        //applicationUserViewModel.ErrorResponseOccured = false;
+                        //(TUser user, string password, bool isPersistent, bool lockoutOn
+                        await _signInManager.PasswordSignInAsync(user, user.Password, true, false);
+
+                        return RedirectToAction("Login");
+                    }
+                }
+                applicationUserViewModel.ErrorResponseOccured = false;
+                return View(applicationUserViewModel);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
+
+     

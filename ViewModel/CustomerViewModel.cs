@@ -11,7 +11,7 @@ namespace Car_Hire_Services__CHS_.ViewModel
     public class CustomerViewModel
     {
         [Key]
-        public int Int { get; set; }
+        public int Id { get; set; }
         public string CustomerName { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
@@ -22,10 +22,12 @@ namespace Car_Hire_Services__CHS_.ViewModel
         public string GuarantorsName { get; set; }
         public string GuarantorsNumber { get; set; }
         public string GuarantorsAddress { get; set; }
-        public int CountryId { get; internal set; }
-        public string City { get; internal set; }
-        public string ResponseMessage { get; internal set; }
-        public bool ResponseOccured { get; internal set; }
-        public bool Deleted { get; internal set; }
+        public int CountryId { get;  set; }
+        public string PassWord { get; set; }
+        public string ConfirmPassWord { get; set; }
+        public string City { get; set; }
+        public string ResponseMessage { get;  set; }
+        public bool ResponseOccured { get; set; }
+        public bool Deleted { get;  set; }
     }
 }

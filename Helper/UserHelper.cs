@@ -64,6 +64,7 @@ namespace Car_Hire_Services__CHS_.Helper
                     Password = model.Password,
                     ConfirmPassword = model.ConfirmPassword,
                     StateId = Convert.ToInt32(model.State),
+                    IsAdmin = false,
                 };
                 if (application.Email != null && application.UserName != null && application.Password != null && application.ConfirmPassword != null)
                 {
@@ -83,6 +84,44 @@ namespace Car_Hire_Services__CHS_.Helper
                 throw;
             }
         }
+
+
+        public async Task<ApplicationUser> CreateAdminAsync(ApplicationUserViewModel model)
+        {
+            try
+            {
+                var application = new ApplicationUser()//instantiate
+                {
+                    Email = model.Email,
+                    UserName = model.Email,
+                    Password = model.Password,
+                    ConfirmPassword = model.ConfirmPassword,
+                    StateId = Convert.ToInt32(model.State),
+                    IsAdmin = true,
+                };
+                if (application.Email != null && application.UserName != null && application.Password != null && application.ConfirmPassword != null)
+                {
+                    application.DateRegistered = DateTime.Now;
+                    var result = await _userManager.CreateAsync(application, application.Password);
+                    if (result.Succeeded)
+                    {
+                        return application;
+                    }
+                    return null;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
+
+
         public string UploadedFile(IFormFile image)
         {
             string uniqueFileName = string.Empty;
@@ -126,9 +165,9 @@ namespace Car_Hire_Services__CHS_.Helper
             return myCustomers;
         }
 
-        public List<mycar> GetCarDropDown()
+        public List<Cars> GetCarDropDown()
         {
-            var cars = new mycar()
+            var cars = new Cars()
             {
                 Id = 0,
                 Name = "-- Select --",
@@ -155,5 +194,43 @@ namespace Car_Hire_Services__CHS_.Helper
             }
             return allCars;
         }
+
+
+        public async Task<ApplicationUser> CreateAdminAsync(ApplicationUserViewModel admin)
+        {
+            try
+            {
+                var application = new ApplicationUser()//instantiate
+                {
+                    Email = admin.Email,
+                    UserName = admin.Email,
+                    Password = admin.Password,
+                    ConfirmPassword = admin.ConfirmPassword,
+                    StateId = Convert.ToInt32(admin.State),
+                };
+                if (application.Email != null && application.UserName != null && application.Password != null && application.ConfirmPassword != null)
+                {
+                    application.DateRegistered = DateTime.Now;
+                    var result = await _userManager.CreateAsync(application, application.Password);
+                    if (result.Succeeded)
+                    {
+                        return application;
+                    }
+                    return null;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
+
+
+
     }
 }

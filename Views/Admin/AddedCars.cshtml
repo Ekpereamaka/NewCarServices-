@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Car_Hire_Services__CHS_.Models.Cars>
+
+@{
+    ViewData["Title"] = "AddedCars";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8 m-auto">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>List of car history to be Edited and Deleted</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>Brand</th>
+                                <th>Description</th>
+                                <th>Year of vehicle</th>
+                                <th>Price</th>
+                                <th>Type</th>
+                                <th>Color</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var obj in Model)
+                            {
+                                <tr>
+                                    <td width="50%">@obj.Id</td>
+                                    <td width="50%">@obj.Name</td>
+                                    <td width="50%">@obj.Brand</td>
+                                    <td width="50%">@obj.YearOfManifacture</td>
+                                    <td width="50%">@obj.Type</td>
+                                    <td width="50%">@obj.Price</td>
+                                    <td width="50%">@obj.Description</td>
+                                    <td width="50%">@obj.Color</td>
+                                    <td class="text-center d-flex">
+                                        <a asp-controller="Admin" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">Edit</a>
+                                        <a asp-controller="Admin" asp-action="DeleteCar" asp-route-id="@obj.Id" class="btn btn-danger">Delete</a>
+                                    </td>
+
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

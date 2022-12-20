@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,6 @@ namespace Car_Hire_Services__CHS_.Controllers
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private IUserHelper _userHelper;
-        private dynamic mycars;
-        private object IuserHelper;
 
         public AdminController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IUserHelper userHelper)
         {
@@ -32,7 +31,7 @@ namespace Car_Hire_Services__CHS_.Controllers
         }
         public IActionResult Index()
         {
-            var model = _context.Payment.Where(x => x.Id != 0).Include(x=> x.Cars).ToList();
+            var model = _context.Payment.Where(x => x.Id != 0).Include(x => x.Cars).ToList();
             var data = model.Select(x => new CarViewModel
             {
                 BankName = "First Bank",
@@ -44,7 +43,7 @@ namespace Car_Hire_Services__CHS_.Controllers
                 Active = x.Active,
                 UserId = x.UserId,
                 CarId = x.CarId,
-                
+
             }).ToList();
             return View(data);
         }
@@ -133,7 +132,7 @@ namespace Car_Hire_Services__CHS_.Controllers
                 if (carViewModel != null)
                 {
                     var image = _userHelper.UploadedFile(carViewModel.Image);
-                    var carmodel = new mycar()
+                    var carmodel = new Cars()
                     {
                         YearOfManifacture = carViewModel.YearOfManifacture,
                         Description = carViewModel.Description,
@@ -213,6 +212,15 @@ namespace Car_Hire_Services__CHS_.Controllers
                 throw;
             }
         }
+
+
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            var nation = _context.Nationality.ToList();
+            ViewBag.Nationality = nation;
+            return View();
+        }
         [HttpGet]
         public IActionResult Payment()
         {
@@ -235,7 +243,7 @@ namespace Car_Hire_Services__CHS_.Controllers
         [HttpGet]
         public IActionResult AdminBankDetails(CarViewModel car)
         {
-            if (car.CustomerId > 0 && car.Cars != null )
+            if (car.CustomerId > 0 && car.Cars != null)
             {
                 var customer = _context.Customer.Where(x => x.Id == car.CustomerId && !x.Deleted).FirstOrDefault();
                 var myProduct = _context.Cars.Where(x => x.Id == Convert.ToInt32(car.Cars) && !x.Deleted).FirstOrDefault();
@@ -255,9 +263,9 @@ namespace Car_Hire_Services__CHS_.Controllers
                     return View(product);
                 }
             }
-            return RedirectToAction ("CarsForRent");
+            return RedirectToAction("CarsForRent");
         }
-         [HttpPost]
+        [HttpPost]
         public IActionResult AdminCarPayment(CarViewModel paymentData)
         {
             try
@@ -267,7 +275,7 @@ namespace Car_Hire_Services__CHS_.Controllers
                     var userName = User.Identity.Name;
                     var user = _userManager.Users.Where(x => x.Email == userName).FirstOrDefault();
                     var car = _context.Cars.Where(x => x.Name == paymentData.Name).FirstOrDefault();
-                   
+
                     var carmodel = new Payment()
                     {
                         Amount = paymentData.Price,
@@ -279,18 +287,18 @@ namespace Car_Hire_Services__CHS_.Controllers
                         Deleted = false,
                         Active = true,
                         ReferenceNo = paymentData.ReferenceNo,
-                    }; 
+                    };
 
                     _context.Payment.Add(carmodel);
                     _context.SaveChanges();
                     return Json(new { isError = false, msg = "Success" });
                 }
-                return Json( new {isError = true, msg = "Failed"});
+                return Json(new { isError = true, msg = "Failed" });
             }
             catch (Exception ex)
             {
 
-                throw  ex;
+                throw ex;
             }
         }
 
@@ -323,12 +331,117 @@ namespace Car_Hire_Services__CHS_.Controllers
         //        throw;
         //    }
         //}
-        
 
+        [HttpGet]
+        public IActionResult GetCars()
+        {
+            var cars = _context.Cars.Where(x => x.Id != 0 && x.Active).ToList();
+            return View(cars);
+        }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var getCarToBeEdited = _context.Cars.Where(d => d.Id == id && !d.Deleted).FirstOrDefault();
+            if (getCarToBeEdited != null)
+            {
+                return View(getCarToBeEdited);
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult EditPost(Cars mycar)
+        {
+            try
+            {
+                if (mycar != null)
+                {
+                    var getCarToBeEdited = _context.Cars.Where(f => f.Id == mycar.Id).FirstOrDefault();
+                    if (getCarToBeEdited != null)
+                    {
+                        getCarToBeEdited.Name = mycar.Name;
+                        getCarToBeEdited.Color = mycar.Color;
+                        getCarToBeEdited.Description = mycar.Description;
+                        getCarToBeEdited.Type = mycar.Type;
+                        getCarToBeEdited.Price = mycar.Price;
+                        getCarToBeEdited.Brand = mycar.Brand;
+                        getCarToBeEdited.YearOfManifacture = mycar.YearOfManifacture;
+                    }
+                    _context.Cars.Update(getCarToBeEdited);
+                    _context.SaveChanges();
+                    return RedirectToAction("GetCars");
+                }
+                return View(mycar);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public IActionResult DeleteCar(int carId)
+        {
+            var getCarToBeEdited = _context.Cars.Where(d => d.Id == carId && !d.Deleted).FirstOrDefault();
+            if (getCarToBeEdited != null)
+            {
+                getCarToBeEdited.Active = false;
+                getCarToBeEdited.Deleted = true;
+                _context.Update(getCarToBeEdited);
+                _context.SaveChanges();
+                return RedirectToAction("GetCars");
+            }
+            return View();
+        }
     }
-
-
-
-
 }
+
+
+
+
+/*[HttpGet]
+public IActionResult DeleteCar(int id)
+{
+    var veat = _context.Cars.Where(x => x.Id == id && !x.Deleted).FirstOrDefault();
+    if (veat != null)
+    {
+        return View(veat);
+    }
+    return View();
+}
+
+[HttpPost]
+public JsonResult DeletePost(string id)
+{
+    try
+    {
+        var dd = JsonConvert.DeserializeObject<Cars>(id);
+        if (dd !=null )
+        {
+            var car = _context.Cars.Find(dd);
+            _context.Cars.Remove(car);
+            _context.SaveChanges();
+            return Json("GetCars");
+        }
+        return Json(dd);
+    }
+    catch (Exception)
+    {
+
+        throw;
+    }
+}
+}
+}    */
+
+
+
+
+
+
+
+
+
+
+
+
+

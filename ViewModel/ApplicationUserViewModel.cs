@@ -20,6 +20,7 @@ namespace Car_Hire_Services__CHS_.ViewModel
         public string Deactivated { get; set; }
         public bool Deleted { get; set; }
         public string Address { get; set; }
+        public string Phone { get; set; }
         public string DateOfBirth { get; set; }
         public string City { get; set; }
         public DateTime DateRegistered { get; set; }

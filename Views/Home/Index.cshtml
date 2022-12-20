@@ -63,11 +63,11 @@
 
                         <img class="card-img-top" src="images/car3.jpg" alt="Card image" style="width:100%; height:200px;">
                         <div class="card-body">
-                            <h4 class="card-title text-primary">@item.Name]</h4>
+                            <h4 class="card-title text-primary">@item.Name</h4>
                             <p class="card-text">@item.Price</p>
                             @item.Brand
-                            @*<p>Sale: $30000</p>
-                            <p>Rent: $2500</p>*@
+                            <p>Buy:$15000</p>
+                            @*<p>Rent: $2000</p>*@
                         </div>
 
                        
@@ -78,6 +78,33 @@
         </div>
 
     </div>
+<div class="container-fluid">
+    <div class="row p-4">
+        @if (Model != null && Model.Count() > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-3 p-4">
+                    <div class="card" @*style="width:250px"*@>
+
+                        <img class="card-img-top" src="images/car3.jpg" alt="Card image" style="width:100%; height:200px;">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">@item.Name</h4>
+                            @*<p class="card-text">@item.Price</p>*@
+                            @item.Brand
+                           
+                                <p>Rent: $2000</p>
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+    
 <br>
 <div class="container-fluid text-center">
     <h3>VIEW LATEST NEWS AND CARS</h3>

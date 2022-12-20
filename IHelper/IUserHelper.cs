@@ -19,7 +19,9 @@ namespace Car_Hire_Services__CHS_.IHelper
         Task<ApplicationUser> CreateUserAsync(ApplicationUserViewModel model);
         string UploadedFile(IFormFile image);
         List<Customer> GetCustomerDropDown();
-        List<mycar> GetCarDropDown();
+        List<Cars> GetCarDropDown();
         List<CarViewModel> GetCars();
+        Task<ApplicationUser> CreateAdminAsync(ApplicationUserViewModel admin);
+
     }
 }
